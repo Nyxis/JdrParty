@@ -17,11 +17,11 @@ class ResultatTirage : public Logger
 public:
     std::string static resultat(int score){
 
-            return score >= 90
+            return score >= 75
                    ? enumToString(ResultatConst::ReussiteCritique)
-                   : score >= 40
+                   : score >= 50
                    ? enumToString(ResultatConst::Reussite)
-                   : score >= 20
+                   : score >= 25
                    ? enumToString(ResultatConst::Echec)
                    : enumToString(ResultatConst::Fumble);
     }

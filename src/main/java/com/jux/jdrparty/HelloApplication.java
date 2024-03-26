@@ -90,7 +90,7 @@ public class HelloApplication extends Application {
 
 
 
-        buttonPoing.setOnAction(e -> launchCPP("f", () -> {
+        buttonFeu.setOnAction(e -> launchCPP("f", () -> {
             if (lastOutput.equals("Reussite Critique")) {
                 buttonFeu.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
