@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
     private String lastOutput = "";
     @FXML
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage)  {
 
         VBox mainFrame = new VBox();
 
@@ -39,85 +39,72 @@ public class HelloApplication extends Application {
 
 
 
-        buttonArc.setOnAction(e -> {
+        buttonArc.setOnAction(e -> launchCPP("a", () -> {
 
-            launchCPP("a");
-            if (lastOutput.equals("Reussite")) {
+            if (lastOutput.equals("Reussite critique")) {
                 buttonArc.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
-                if (lastOutput.equals("Echec")) {
+                if (lastOutput.equals("Reussite")) {
                     buttonArc.setStyle("-fx-background-color: Orange");
                 } else {
-                    if (lastOutput.equals("Reussite Critique")) {
+                    if (lastOutput.equals("Echec")) {
                         buttonArc.setStyle("-fx-background-color: Red");
                     } else {
                         buttonArc.setStyle("-fx-background-color: DarkRed");
                     }
                 }
             }
+        }));
 
-        });
-
-
-        buttonEpee.setOnAction(e ->{
-
-
-            launchCPP("e");
-            if (lastOutput.equals("Reussite")) {
+        buttonEpee.setOnAction(e -> launchCPP("e", () -> {
+            if (lastOutput.equals("Reussite Critique")) {
                 buttonEpee.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
-                if (lastOutput.equals("Echec")) {
+                if (lastOutput.equals("Reussite")) {
                     buttonEpee.setStyle("-fx-background-color: Orange");
                 } else {
-                    if (lastOutput.equals("Reussite Critique")) {
+                    if (lastOutput.equals("Echec")) {
                         buttonEpee.setStyle("-fx-background-color: Red");
                     } else {
                         buttonEpee.setStyle("-fx-background-color: DarkRed");
                     }
                 }
             }
+        }));
 
-        });
-
-        buttonPoing.setOnAction(e ->{
-
-            launchCPP("p");
-            if (lastOutput.equals("Reussite")) {
+        buttonPoing.setOnAction(e -> launchCPP("p", () -> {
+            if (lastOutput.equals("Reussite Critique")) {
                 buttonPoing.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
-                if (lastOutput.equals("Echec")) {
+                if (lastOutput.equals("Reussite")) {
                     buttonPoing.setStyle("-fx-background-color: Orange");
                 } else {
-                    if (lastOutput.equals("Reussite Critique")) {
+                    if (lastOutput.equals("Echec")) {
                         buttonPoing.setStyle("-fx-background-color: Red");
                     } else {
                         buttonPoing.setStyle("-fx-background-color: DarkRed");
                     }
                 }
             }
-
-        });
-
+        }));
 
 
-        buttonFeu.setOnAction(e ->{
 
-            launchCPP("f");
-            if (lastOutput.equals("Reussite")) {
+        buttonPoing.setOnAction(e -> launchCPP("f", () -> {
+            if (lastOutput.equals("Reussite Critique")) {
                 buttonFeu.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
-                if (lastOutput.equals("Echec")) {
+                if (lastOutput.equals("Reussite")) {
                     buttonFeu.setStyle("-fx-background-color: Orange");
                 } else {
-                    if (lastOutput.equals("Reussite Critique")) {
+                    if (lastOutput.equals("Echec")) {
                         buttonFeu.setStyle("-fx-background-color: Red");
                     } else {
                         buttonFeu.setStyle("-fx-background-color: DarkRed");
                     }
                 }
             }
-
-        });
+        }));
 
         mainFrame.getChildren().addAll(buttonArc, buttonEpee, buttonPoing, buttonFeu);
 
@@ -134,21 +121,23 @@ public class HelloApplication extends Application {
         launch();
     }
 
-    private void readStreamAndStoreLastLine(InputStream inputStream) {
-        new Thread(() -> {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    lastOutput = line;
-                    System.out.println(lastOutput);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
+//    private void readStreamAndStoreLastLine(InputStream inputStream, Callback callback) {
+//        new Thread(() -> {
+//            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    lastOutput = line;
+//                    System.out.println(lastOutput);
+//                }
+//                javafx.application.Platform.runLater(callback::onProcessComplete);
+//
+//            } catch (IOException e) {
+//                e.getCause();
+//            }
+//        }).start();
+//    }
 
-    void launchCPP(String arg){
+    void launchCPP(String arg,  Callback callback){
         try {
             String command = "src/main/resources/CPP/JdrExo/cmake-build-debug/JdrExo";
 
@@ -156,16 +145,22 @@ public class HelloApplication extends Application {
 
             System.out.println();
             Process process = cpp.start();
-
-            readStreamAndStoreLastLine(process.getInputStream());
-
-            readStreamAndStoreLastLine(process.getErrorStream());
-
+            new Thread(() -> {
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        lastOutput = line;
+                        System.out.println(lastOutput);
+                    }
+                    javafx.application.Platform.runLater(callback::onProcessComplete);
+                } catch (IOException e) {
+                    e.getCause();
+                }
+            }).start();
 
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+    }
 
-
-    };
 }
