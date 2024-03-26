@@ -1,0 +1,26 @@
+#pane{
+    -fx-background-image: url("com/example/img/texture_fond.jpeg");
+    -fx-background-size: 800, 700;
+    -fx-background-position: center, center;
+    -fx-background-repeat: no-repeat;
+}
+Button {
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+.button-normal{
+    -fx-text-fill: rgb(49, 89, 23);
+    -fx-border-color: rgb(255, 0, 0);
+}
+.button-green{
+    -fx-fill: green;
+}
+.button-gold{
+    -fx-fill: gold;
+}
+.button-red{
+    -fx-fill: red;
+}
+.button-black{
+    -fx-fill: black;
+}
