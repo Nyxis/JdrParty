@@ -39,7 +39,7 @@ public class HelloApplication extends Application {
 
 
 
-        buttonArc.setOnAction(e -> launchCPP("a", () -> {
+        buttonArc.setOnAction(e -> launchCPP("1.1", "1.45", "0.95", () -> {
 
             if (lastOutput.equals("Reussite critique")) {
                 buttonArc.setStyle("-fx-background-color: MediumSeaGreen");
@@ -56,7 +56,7 @@ public class HelloApplication extends Application {
             }
         }));
 
-        buttonEpee.setOnAction(e -> launchCPP("e", () -> {
+        buttonEpee.setOnAction(e -> launchCPP("1.2","1.25", "0.85",  () -> {
             if (lastOutput.equals("Reussite Critique")) {
                 buttonEpee.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
@@ -72,7 +72,7 @@ public class HelloApplication extends Application {
             }
         }));
 
-        buttonPoing.setOnAction(e -> launchCPP("p", () -> {
+        buttonPoing.setOnAction(e -> launchCPP("1","1.6", "1", () -> {
             if (lastOutput.equals("Reussite Critique")) {
                 buttonPoing.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
@@ -90,7 +90,7 @@ public class HelloApplication extends Application {
 
 
 
-        buttonFeu.setOnAction(e -> launchCPP("f", () -> {
+        buttonFeu.setOnAction(e -> launchCPP("1.5", "1", "0.5", () -> {
             if (lastOutput.equals("Reussite Critique")) {
                 buttonFeu.setStyle("-fx-background-color: MediumSeaGreen");
             } else {
@@ -137,11 +137,11 @@ public class HelloApplication extends Application {
 //        }).start();
 //    }
 
-    void launchCPP(String arg,  Callback callback){
+    void launchCPP(String arg1, String arg2, String arg3,  Callback callback){
         try {
             String command = "src/main/resources/CPP/JdrExo/cmake-build-debug/JdrExo";
 
-            ProcessBuilder cpp = new ProcessBuilder(command, arg);
+            ProcessBuilder cpp = new ProcessBuilder(command, arg1, arg2, arg3);
 
             System.out.println();
             Process process = cpp.start();
