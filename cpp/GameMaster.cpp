@@ -62,7 +62,7 @@ GameMaster::GameMaster(list<int> listeFacesDes, list<int> listeNbFaces, int nbPi
     }
     this->nbDecks = cnt;
 }
-string GameMaster::pleaseGiveMeACrit(float succes, float critique, float fumble){
+string GameMaster::pleaseGiveMeACrit(float fumble, float succes, float critique){
 
     int max = (this->nbPieces+this->nbDes+this->nbDecks-1);
     int r = RandomNumberGenerator::generate(0, max);
@@ -70,7 +70,7 @@ string GameMaster::pleaseGiveMeACrit(float succes, float critique, float fumble)
     {
         auto it = this->listeDes.begin();
         advance(it, r);
-        this->tyrage = Tirage(succes, critique, fumble, *it);
+        this->tyrage = Tirage(fumble, succes, critique,  *it);
     }
     else
     {
@@ -79,14 +79,14 @@ string GameMaster::pleaseGiveMeACrit(float succes, float critique, float fumble)
             auto it = this->listePieces.begin();
             r -= this->nbDes;
             advance(it, r);
-            this->tyrage = Tirage(succes, critique, fumble, *it);
+            this->tyrage = Tirage(fumble, succes, critique, *it);
         }
         else
         {
             auto it = this->listeDecks.begin();
             r -= this->nbDes + this->nbPieces;
             advance(it, r);
-            this->tyrage = Tirage(succes, critique, fumble, *it);
+            this->tyrage = Tirage(fumble, succes, critique, *it);
         }
     }
 

@@ -13,14 +13,14 @@ Button {
     -fx-border-color: rgb(255, 0, 0);
 }
 .button-green{
-    -fx-fill: green;
+    -fx-background-color: green;
 }
 .button-gold{
-    -fx-fill: gold;
+    -fx-background-color: gold;
 }
 .button-red{
-    -fx-fill: red;
+    -fx-background-color: red;
 }
 .button-black{
-    -fx-fill: black;
+    -fx-background-color: black;
 }

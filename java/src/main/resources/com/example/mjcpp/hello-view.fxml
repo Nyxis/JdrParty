@@ -12,8 +12,8 @@
     </padding>
 
     <Label fx:id="welcomeText"/>
-    <Button styleClass="button" text="Tir à l'arc" onAction="#onBowButtonClick"/>
-    <Button styleClass="button" text="Coup d'épée" onAction="#onSwordButtonClick"/>
-    <Button styleClass="button" text="Coup de poing" onAction="#onFistButtonClick"/>
-    <Button styleClass="button" text="Boule de feu" onAction="#onFireButtonClick"/>
+    <Button fx:id="bowButton" styleClass="button" text="Tir à l'arc" onAction="#onBowButtonClick"/>
+    <Button fx:id="swordButton" styleClass="button" text="Coup d'épée" onAction="#onSwordButtonClick"/>
+    <Button fx:id="fistButton" styleClass="button" text="Coup de poing" onAction="#onFistButtonClick"/>
+    <Button fx:id="fireballButton" styleClass="button" text="Boule de feu" onAction="#onFireButtonClick"/>
 </VBox>

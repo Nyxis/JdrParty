@@ -7,7 +7,7 @@
 #include "Logger.h"
 #include <iostream>
 
-Tirage::Tirage(float suc, float crit, float ech, De obj) {
+Tirage::Tirage(float ech, float suc, float crit, De obj) {
     this->succes = suc;
     this->critique = crit;
     this->echec = ech;
@@ -16,7 +16,7 @@ Tirage::Tirage(float suc, float crit, float ech, De obj) {
     Logger::Log("Succes2: "+to_string(this->getSucces())+"   Crit2: "+to_string(this->getCritique())+"   Echec2: "+to_string(this->getEchec()));
 
 }
-Tirage::Tirage(float suc, float crit, float ech, Piece obj) {
+Tirage::Tirage(float ech, float suc, float crit, Piece obj) {
     this->succes = suc;
     this->critique = crit;
     this->echec = ech;
@@ -26,7 +26,7 @@ Tirage::Tirage(float suc, float crit, float ech, Piece obj) {
     Logger::Log("Succes2: "+to_string(this->getSucces())+"   Crit2: "+to_string(this->getCritique())+"   Echec2: "+to_string(this->getEchec()));
 
 }
-Tirage::Tirage(float suc, float crit, float ech, Deck obj) {
+Tirage::Tirage(float ech, float suc, float crit, Deck obj) {
     this->succes = suc;
     this->critique = crit;
     this->echec = ech;

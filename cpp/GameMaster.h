@@ -20,7 +20,7 @@ class GameMaster {
 
 public:
     GameMaster(list<int> listeFacesDes, list<int> listeNbDes, int nbPiece, list<int> nbCouleurs, list<int> nbValeurs);
-    string pleaseGiveMeACrit(float succes, float critique, float fumble);
+    string pleaseGiveMeACrit(float fumble, float succes, float critique);
     string getObjetNom();
     float getResultat();
     float getSuccess();
