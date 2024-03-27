@@ -33,7 +33,6 @@ public class HelloApplication extends Application {
         stage.setTitle("Jeu De Role de gros Nerd");
         stage.setScene(scene);
         stage.show();
-        stage.onHiddenProperty();
 
         buttonArc.setOnAction(e -> ButtonActionHandler.doThat(buttonArc));
 
