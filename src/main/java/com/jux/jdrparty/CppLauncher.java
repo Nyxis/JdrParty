@@ -13,13 +13,11 @@ public class CppLauncher {
 
     public static void launchCPP(String arg1, String arg2, String arg3, Callback callback) throws IOException {
 
-
         try {
             String command = "src/main/resources/CPP/JdrExo/cmake-build-debug/JdrExo";
 
             ProcessBuilder cpp = new ProcessBuilder(command, arg1, arg2, arg3);
 
-            System.out.println();
             Process process = cpp.start();
             new Thread(() -> {
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
@@ -36,7 +34,6 @@ public class CppLauncher {
                 }
 
             }).start();
-
 
         } catch (IOException ex) {
             throw new RuntimeException(ex);

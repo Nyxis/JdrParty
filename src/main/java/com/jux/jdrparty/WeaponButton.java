@@ -6,8 +6,29 @@ import javafx.scene.control.Button;
 
 public class WeaponButton extends Button {
 
-    WeaponButton(String buttonName) {
+    private final String critRate;
+    private final String failRate;
+    private final String fumbleRate;
+
+
+    public String getCritRate() {
+        return critRate;
+    }
+
+    public String getFailRate() {
+        return failRate;
+    }
+
+    public String getFumbleRate() {
+        return fumbleRate;
+    }
+
+
+    WeaponButton(String buttonName, String critRate, String failRate, String fumbleRate) {
         super(buttonName);
+        this.critRate = critRate;
+        this.failRate = failRate;
+        this.fumbleRate = fumbleRate;
         this.initialize();
     }
 

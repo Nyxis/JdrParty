@@ -6,8 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.io.IOException;
-
 public class HelloApplication extends Application {
 
     public static void main(String[] args) {
@@ -23,10 +21,10 @@ public class HelloApplication extends Application {
         mainFrame.setSpacing(50);
         mainFrame.setAlignment(Pos.CENTER);
 
-        WeaponButton buttonArc = new WeaponButton("Tir à l'arc");
-        WeaponButton buttonEpee = new WeaponButton("Coup d'épée");
-        WeaponButton buttonPoing = new WeaponButton("Coup de poing");
-        WeaponButton buttonFeu = new WeaponButton("Boule de feu");
+        WeaponButton buttonArc = new WeaponButton("Tir à l'arc", "1.1", "1.45", "0.95");
+        WeaponButton buttonEpee = new WeaponButton("Coup d'épée","1.2", "1.25", "0.85");
+        WeaponButton buttonPoing = new WeaponButton("Coup de poing", "1.5", "1", "0.5");
+        WeaponButton buttonFeu = new WeaponButton("Boule de feu", "1.5", "1", "0.5");
 
         mainFrame.getChildren().addAll(buttonArc, buttonEpee, buttonPoing, buttonFeu);
 
@@ -37,40 +35,12 @@ public class HelloApplication extends Application {
         stage.show();
         stage.onHiddenProperty();
 
-        buttonArc.setOnAction(e -> {
-            try {
-                CppLauncher.launchCPP("1.1", "1.45", "0.95", () ->
-                    buttonArc.changeColor(CppLauncher.getLastOutput()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        buttonArc.setOnAction(e -> ButtonActionHandler.doThat(buttonArc));
 
-        buttonEpee.setOnAction(e -> {
-            try {
-                CppLauncher.launchCPP("1.1", "1.45", "0.95", () ->
-                    buttonEpee.changeColor(CppLauncher.getLastOutput()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        buttonEpee.setOnAction(e -> ButtonActionHandler.doThat(buttonEpee));
 
-        buttonPoing.setOnAction(e -> {
-            try {
-                CppLauncher.launchCPP("1.1", "1.45", "0.95", () ->
-                    buttonPoing.changeColor(CppLauncher.getLastOutput()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        buttonPoing.setOnAction(e -> ButtonActionHandler.doThat(buttonPoing));
 
-        buttonFeu.setOnAction(e -> {
-            try {
-                CppLauncher.launchCPP("1.1", "1.45", "0.95", () ->
-                    buttonFeu.changeColor(CppLauncher.getLastOutput()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        buttonFeu.setOnAction(e -> ButtonActionHandler.doThat(buttonFeu));
     }
 }
