@@ -1,0 +1,14 @@
+//
+// Created by THOMSON on 31/03/2024.
+//
+
+#ifndef MMADI_MOURTADHOI_RANDOMDRAW_H
+#define MMADI_MOURTADHOI_RANDOMDRAW_H
+
+
+class RandomDraw {
+
+};
+
+
+#endif //MMADI_MOURTADHOI_RANDOMDRAW_H
