@@ -5,7 +5,7 @@
 #include "Deck.h"
 #include <cstdlib>
 #include <ctime>
-#include <vector>
+
 
 Deck::Deck(int _numColors, int _numValues) : numColors(_numColors), numValues(_numValues) {}
 

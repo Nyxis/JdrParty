@@ -777,8 +777,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/projet/JdrPartyCPP/cmake-build-debug",
-		"source" : "C:/projet/JdrPartyCPP"
+		"build" : "C:/projet/JdrParty/src/main/resources/CPP/JdrPartyCPP/cmake-build-debug",
+		"source" : "C:/projet/JdrParty/src/main/resources/CPP/JdrPartyCPP"
 	},
 	"version" : 
 	{

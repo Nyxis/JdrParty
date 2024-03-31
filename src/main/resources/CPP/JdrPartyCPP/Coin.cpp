@@ -17,13 +17,17 @@ bool Coin::flip(double criticalRate, double failureRate, double fumbleRate) {
 
         // Check if the result is a success, a failure, a critical success, or a fumble
         if (randomValue < criticalRate) {
-            count += 2; // Critical success
+            // Critical success
+            count += 2;
         } else if (randomValue < criticalRate + failureRate) {
-            count = -1; // Failure
+            // Failure
+            count = -1;
         } else if (randomValue < criticalRate + failureRate + fumbleRate) {
-            count = 0; // Fumble
+            // Fumble
+            count = 0;
         } else {
-            ++count; // Success
+            // Success
+            ++count;
         }
     }
     return count == 1;

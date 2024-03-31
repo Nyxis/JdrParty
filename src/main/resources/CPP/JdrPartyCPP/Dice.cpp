@@ -10,7 +10,8 @@
 Dice::Dice(std::vector<int> _faces) : faces(_faces) {}
 
 int Dice::roll(double criticalRate, double failureRate, double fumbleRate) {
-    srand(time(nullptr)); // Seed the random number generator
+    // Seed the random number generator
+    srand(time(nullptr));
     int randomIndex = rand() % faces.size();
 
     // Generate a random number between 0 and 100 to represent the success rate

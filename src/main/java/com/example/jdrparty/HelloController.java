@@ -3,9 +3,9 @@ package com.example.jdrparty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import javafx.scene.control.Label;
+import java.io.*;
+import javafx.scene.control.Button;
 
 public class HelloController {
 
@@ -21,78 +21,70 @@ public class HelloController {
     @FXML
     private Button fireballButton;
 
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        String action = button.getText();
-        switch (action) {
-            case "Bow Attack":
-                // Action for "Bow Attack" button
-                callCppApplication("10%", "45%", "5%");
-                break;
-            case "Sword Attack":
-                // Action for "Sword Attack" button
-                callCppApplication("20%", "25%", "15%");
-                break;
-            case "Fist Attack":
-                // Action for "Fist Attack" button
-                callCppApplication("0%", "60%", "0%");
-                break;
-            case "Fireball":
-                // Action for "Fireball" button
-                callCppApplication("50%", "0%", "50%");
-                break;
-            default:
-                break;
-        }
-    }
 
-    private void callCppApplication(String criticalRate, String failureRate, String fumbleRate) {
+
+    private int callCppApplication(String criticalRate, String failureRate, String fumbleRate) {
+        int exitVal = -1;
         try {
-            // Chemin d'accès vers l'exécutable C++
-            String cppExecutablePath = "src/main/resources/CPP/JdrExo/cmake-build-debug/JdrExo";
+            System.out.print(criticalRate);
+            System.out.print(failureRate);
+            System.out.print(fumbleRate);
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.command("src/main/resources/CPP/JdrPartyCPP/cmake-build-debug/JdrParty", criticalRate, failureRate, fumbleRate);
+            processBuilder.redirectErrorStream(true);
+            Process process = processBuilder.start();
 
-            // Création de la commande à exécuter avec les arguments
-            List<String> command = new ArrayList<>();
-            command.add(cppExecutablePath);
-            command.add(criticalRate);
-            command.add(failureRate);
-            command.add(fumbleRate);
+            // Reading error output
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String errorLine;
+            while ((errorLine = errorReader.readLine()) != null) {
+                System.err.println(errorLine); // Print error lines
+            }
 
-            // Création du processus
-            ProcessBuilder pb = new ProcessBuilder(command);
-            pb.inheritIO(); // Redirection de l'entrée et de la sortie standard du processus
-            Process process = pb.start();
+            // Reading standard output
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line); // Print standard output lines
+            }
 
-            // Attendre la fin de l'exécution du processus
-            process.waitFor();
-        } catch (IOException | InterruptedException e) {
+            // Wait for the process to finish
+            exitVal = process.waitFor();
+            System.out.println("Exited with error code " + exitVal);
+        } catch (Exception e) {
+            System.out.println(e.toString());
             e.printStackTrace();
         }
+        return exitVal;
     }
 
 
     @FXML
-    protected void onBowButtonClick(ActionEvent event) {
+    protected void onBowButtonClick() {
         System.out.println("Bow Attack");
         // Add code here to execute when "Bow Attack" button is clicked
+        int exitVal = callCppApplication("0.1", "O.5", "0.05");
+
     }
 
     @FXML
-    protected void onSwordButtonClick(ActionEvent event) {
+    protected void onSwordButtonClick() {
         System.out.println("Sword Attack");
         // Add code here to execute when "Sword Attack" button is clicked
+        int exitVal = callCppApplication("0.20", "0.25", "0.15");
     }
 
     @FXML
-    protected void onFistButtonClick(ActionEvent event) {
+    protected void onFistButtonClick() {
         System.out.println("Fist Attack");
         // Add code here to execute when "Fist Attack" button is clicked
+        int exitVal = callCppApplication("0", "0.6", "0");
     }
 
     @FXML
     protected void onFireButtonClick() {
         System.out.println("Fire button clicked!");
+        int exitVal = callCppApplication("0.5", "0", "0.5");
     }
 }
 
