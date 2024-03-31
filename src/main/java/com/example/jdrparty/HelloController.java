@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.io.*;
-import javafx.scene.control.Button;
 
 public class HelloController {
 
@@ -21,9 +20,10 @@ public class HelloController {
     @FXML
     private Button fireballButton;
 
+    @FXML
+    private Label welcomeText;
 
-
-    private int callCppApplication(String criticalRate, String failureRate, String fumbleRate) {
+    private void callCppApplication(String criticalRate, String failureRate, String fumbleRate) {
         int exitVal = -1;
         try {
             System.out.print(criticalRate);
@@ -50,12 +50,26 @@ public class HelloController {
 
             // Wait for the process to finish
             exitVal = process.waitFor();
-            System.out.println("Exited with error code " + exitVal);
+
+            // Set text and color based on result
+            String resultText;
+            String style;
+            if (exitVal == 0) {
+                resultText = "Success";
+                style = "-fx-text-fill: green;";
+            } else if (exitVal == 1) {
+                resultText = "Failure";
+                style = "-fx-text-fill: red;";
+            } else {
+                resultText = "Fumble";
+                style = "-fx-text-fill: black;";
+            }
+            welcomeText.setText(resultText);
+            welcomeText.setStyle(style);
+
         } catch (Exception e) {
-            System.out.println(e.toString());
             e.printStackTrace();
         }
-        return exitVal;
     }
 
 
@@ -63,7 +77,7 @@ public class HelloController {
     protected void onBowButtonClick() {
         System.out.println("Bow Attack");
         // Add code here to execute when "Bow Attack" button is clicked
-        int exitVal = callCppApplication("0.1", "O.5", "0.05");
+        callCppApplication("0.1", "O.5", "0.05");
 
     }
 
@@ -71,20 +85,33 @@ public class HelloController {
     protected void onSwordButtonClick() {
         System.out.println("Sword Attack");
         // Add code here to execute when "Sword Attack" button is clicked
-        int exitVal = callCppApplication("0.20", "0.25", "0.15");
+        callCppApplication("0.20", "0.25", "0.15");
     }
 
     @FXML
     protected void onFistButtonClick() {
         System.out.println("Fist Attack");
         // Add code here to execute when "Fist Attack" button is clicked
-        int exitVal = callCppApplication("0", "0.6", "0");
+        callCppApplication("0", "0.6", "0");
     }
 
     @FXML
     protected void onFireButtonClick() {
         System.out.println("Fire button clicked!");
-        int exitVal = callCppApplication("0.5", "0", "0.5");
+        callCppApplication("0.5", "0", "0.5");
+    }
+
+    // Update the color of welcomeText based on the result
+    private void updateResultColor(int exitVal) {
+        String style;
+        if (exitVal == 0) {
+            style = "-fx-text-fill: green;";
+        } else if (exitVal == 1) {
+            style = "-fx-text-fill: red;";
+        } else {
+            style = "-fx-text-fill: black;";
+        }
+        welcomeText.setStyle(style);
     }
 }
 
