@@ -91,6 +91,13 @@ build CMakeFiles/Mmadi_mourtadhoi.dir/GameMaster.cpp.obj: CXX_COMPILER__Mmadi_mo
   OBJECT_DIR = CMakeFiles\Mmadi_mourtadhoi.dir
   OBJECT_FILE_DIR = CMakeFiles\Mmadi_mourtadhoi.dir
 
+build CMakeFiles/Mmadi_mourtadhoi.dir/main.cpp.obj: CXX_COMPILER__Mmadi_mourtadhoi_unscanned_Debug C$:/Users/THOMSON/CLionProjects/Mmadi-mourtadhoi/main.cpp || cmake_object_order_depends_target_Mmadi_mourtadhoi
+  DEP_FILE = CMakeFiles\Mmadi_mourtadhoi.dir\main.cpp.obj.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/THOMSON/CLionProjects/Mmadi-mourtadhoi/.
+  OBJECT_DIR = CMakeFiles\Mmadi_mourtadhoi.dir
+  OBJECT_FILE_DIR = CMakeFiles\Mmadi_mourtadhoi.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Mmadi_mourtadhoi
@@ -99,7 +106,7 @@ build CMakeFiles/Mmadi_mourtadhoi.dir/GameMaster.cpp.obj: CXX_COMPILER__Mmadi_mo
 #############################################
 # Link the executable Mmadi_mourtadhoi.exe
 
-build Mmadi_mourtadhoi.exe: CXX_EXECUTABLE_LINKER__Mmadi_mourtadhoi_Debug CMakeFiles/Mmadi_mourtadhoi.dir/RandomDrawResult.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/CardDeck.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/Coin.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/Die.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/RandomDraw.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/GameMaster.cpp.obj
+build Mmadi_mourtadhoi.exe: CXX_EXECUTABLE_LINKER__Mmadi_mourtadhoi_Debug CMakeFiles/Mmadi_mourtadhoi.dir/RandomDrawResult.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/CardDeck.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/Coin.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/Die.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/RandomDraw.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/GameMaster.cpp.obj CMakeFiles/Mmadi_mourtadhoi.dir/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Mmadi_mourtadhoi.dir

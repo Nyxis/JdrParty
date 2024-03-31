@@ -24,4 +24,5 @@ add_executable(Mmadi_mourtadhoi
         GameMaster.h
         GameMaster.h
         GameMaster.cpp
-        GameMaster.cpp)
+        GameMaster.cpp
+        main.cpp)
