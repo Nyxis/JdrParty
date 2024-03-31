@@ -25,4 +25,6 @@ add_executable(Mmadi_mourtadhoi
         GameMaster.h
         GameMaster.cpp
         GameMaster.cpp
-        main.cpp)
+        main.cpp
+        Logger.h
+        Logger.cpp)
