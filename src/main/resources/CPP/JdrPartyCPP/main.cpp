@@ -5,21 +5,21 @@
 #include <cmath>
 #include <iostream>
 
-int main(int argc, char* argv[]) {
-    if (argc != 4) {
-        std::cerr << "Usage: " << argv[0] << " <criticalRate> <failureRate> <fumbleRate>" << std::endl;
-        return 1;
-    }
+    int main(int argc, char* argv[]) {
+        if (argc != 4) {
+            std::cerr << "Usage: " << argv[0] << " <criticalRate> <failureRate> <fumbleRate>" << std::endl;
+            return 1;
+        }
 
-    // Retrieve rates from command line
-    double criticalRate = std::stod(argv[1]);
-    double failureRate = std::stod(argv[2]);
-    double fumbleRate = std::stod(argv[3]);
+        // Retrieve rates from command line
+        double criticalRate = std::stod(argv[1]);
+        double failureRate = std::stod(argv[2]);
+        double fumbleRate = std::stod(argv[3]);
 
- // Printing the received arguments
-    std::cout << "Critical Rate: " << criticalRate << std::endl;
-    std::cout << "Failure Rate: " << failureRate << std::endl;
-    std::cout << "Fumble Rate: " << fumbleRate << std::endl;
+        // Printing the received arguments
+        std::cout << "Critical Rate: " << criticalRate << std::endl;
+        std::cout << "Failure Rate: " << failureRate << std::endl;
+        std::cout << "Fumble Rate: " << fumbleRate << std::endl;
 
     Logger::log("Critical Rate: " + std::to_string(static_cast<int>(std::round(criticalRate))) + "%", Logger::LogType::INFO);
     Logger::log("Failure Rate: " + std::to_string(static_cast<int>(std::round(failureRate))) + "%", Logger::LogType::INFO);
