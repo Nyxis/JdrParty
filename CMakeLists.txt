@@ -12,4 +12,7 @@ add_executable(Mmadi_mourtadhoi
         CardDeck.h
         CardDeck.cpp
         Coin.h
-        Coin.cpp)
+        Coin.cpp
+        Die.h
+        Die.h
+        Die.cpp)
