@@ -21,7 +21,8 @@ int Deck::draw(double criticalRate, double failureRate, double fumbleRate) {
     // Check if the result is a success, a failure, a critical success, or a fumble
     if (randomValue < criticalRate) {
         // Critical success
-        return (color - 1) * numValues + value + 1000; // Add an arbitrary number to represent a critical success
+        // Add an arbitrary number to represent a critical success
+        return (color - 1) * numValues + value + 1000;
     } else if (randomValue < criticalRate + failureRate) {
         // Failure
         // Return -1 to represent a failure

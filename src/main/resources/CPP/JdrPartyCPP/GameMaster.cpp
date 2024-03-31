@@ -1,9 +1,9 @@
 #include "GameMaster.h"
 #include "Logger.h"
-#include <random> // For std::mt19937
+#include <random> a cha
 #include "GameEventResult.h"
 
-// Declare your random number generator globally or as a class member
+// Declare random number generator globally
 std::mt19937 rng(std::random_device{}());
 
 GameMaster::GameMaster(std::vector<Dice> _dice, std::vector<Coin> _coins, std::vector<Deck> _decks)
@@ -21,11 +21,23 @@ GameEventResult GameMaster::pleaseGiveMeACrit(double criticalRate, double failur
         if (rollResult > 0) {
             return GameEventResult::SUCCESS;
         } else if (rollResult < 0) {
+            // Introduce a chance for failure
+            if (failureRate > 0.0 && rng() % 100 < failureRate * 100) {
+                return GameEventResult::FAILURE;
+            }
+            // Introduce a chance for fumble
+            if (fumbleRate > 0.0 && rng() % 100 < fumbleRate * 100) {
+                return GameEventResult::FUMBLE;
+            }
             return GameEventResult::FAILURE;
         } else {
             // Introduce a chance for fumble
             if (fumbleRate > 0.0 && rng() % 100 < fumbleRate * 100) {
                 return GameEventResult::FUMBLE;
+            }
+            // Introduce a chance for failure
+            if (failureRate > 0.0 && rng() % 100 < failureRate * 100) {
+                return GameEventResult::FAILURE;
             }
             return GameEventResult::FAILURE;
         }
@@ -36,6 +48,11 @@ GameEventResult GameMaster::pleaseGiveMeACrit(double criticalRate, double failur
         if (flipResult) {
             return GameEventResult::SUCCESS;
         } else {
+            // Introduce a chance for failure
+            if (failureRate > 0.0 && rng() % 100 < failureRate * 100) {
+                return GameEventResult::FAILURE;
+            }
+            // Introduce a chance for fumble
             if (fumbleRate > 0.0 && rng() % 100 < fumbleRate * 100) {
                 return GameEventResult::FUMBLE;
             }
@@ -48,11 +65,23 @@ GameEventResult GameMaster::pleaseGiveMeACrit(double criticalRate, double failur
         if (drawResult > 0) {
             return GameEventResult::SUCCESS;
         } else if (drawResult < 0) {
+            // Introduce a chance for failure
+            if (failureRate > 0.0 && rng() % 100 < failureRate * 100) {
+                return GameEventResult::FAILURE;
+            }
+            // Introduce a chance for fumble
+            if (fumbleRate > 0.0 && rng() % 100 < fumbleRate * 100) {
+                return GameEventResult::FUMBLE;
+            }
             return GameEventResult::FAILURE;
         } else {
             // Introduce a chance for fumble
             if (fumbleRate > 0.0 && rng() % 100 < fumbleRate * 100) {
                 return GameEventResult::FUMBLE;
+            }
+            // Introduce a chance for failure
+            if (failureRate > 0.0 && rng() % 100 < failureRate * 100) {
+                return GameEventResult::FAILURE;
             }
             return GameEventResult::FAILURE;
         }

@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class HelloController {
 
@@ -23,97 +25,100 @@ public class HelloController {
     @FXML
     private Label welcomeText;
 
-    private void callCppApplication(String criticalRate, String failureRate, String fumbleRate) {
-        int exitVal = -1;
+    // Method to call the C++ application with given parameters and update button style
+    private void callCppApplication(String criticalRate, String failureRate, String fumbleRate, Button button) {
         try {
-            System.out.print(criticalRate);
-            System.out.print(failureRate);
-            System.out.print(fumbleRate);
+            // Create a process builder for executing the C++ application
             ProcessBuilder processBuilder = new ProcessBuilder();
             processBuilder.command("src/main/resources/CPP/JdrPartyCPP/cmake-build-debug/JdrParty", criticalRate, failureRate, fumbleRate);
             processBuilder.redirectErrorStream(true);
             Process process = processBuilder.start();
 
-            // Reading error output
+            // Read error output from the process
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             String errorLine;
             while ((errorLine = errorReader.readLine()) != null) {
-                System.err.println(errorLine); // Print error lines
+                System.err.println(errorLine);
             }
 
-            // Reading standard output
+            // Read standard output from the process
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line); // Print standard output lines
+                System.out.println(line);
             }
 
-            // Wait for the process to finish
-            exitVal = process.waitFor();
+            // Wait for the process to finish and get the exit value
+            int exitVal = process.waitFor();
 
-            // Set text and color based on result
-            String resultText;
-            String style;
-            if (exitVal == 0) {
-                resultText = "Success";
-                style = "-fx-text-fill: green;";
-            } else if (exitVal == 1) {
-                resultText = "Failure";
-                style = "-fx-text-fill: red;";
-            } else {
-                resultText = "Fumble";
-                style = "-fx-text-fill: black;";
-            }
-            welcomeText.setText(resultText);
-            welcomeText.setStyle(style);
+            // Update button style and text based on the exit value
+            updateButtonStyleAndText(exitVal, button);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
-    @FXML
-    protected void onBowButtonClick() {
-        System.out.println("Bow Attack");
-        // Add code here to execute when "Bow Attack" button is clicked
-        callCppApplication("0.1", "O.5", "0.05");
-
-    }
-
-    @FXML
-    protected void onSwordButtonClick() {
-        System.out.println("Sword Attack");
-        // Add code here to execute when "Sword Attack" button is clicked
-        callCppApplication("0.20", "0.25", "0.15");
-    }
-
-    @FXML
-    protected void onFistButtonClick() {
-        System.out.println("Fist Attack");
-        // Add code here to execute when "Fist Attack" button is clicked
-        callCppApplication("0", "0.6", "0");
-    }
-
-    @FXML
-    protected void onFireButtonClick() {
-        System.out.println("Fire button clicked!");
-        callCppApplication("0.5", "0", "0.5");
-    }
-
-    // Update the color of welcomeText based on the result
-    private void updateResultColor(int exitVal) {
+    // Method to update button style and text based on the exit value
+    private void updateButtonStyleAndText(int exitVal, Button button) {
+        String resultText;
         String style;
-        if (exitVal == 0) {
-            style = "-fx-text-fill: green;";
-        } else if (exitVal == 1) {
-            style = "-fx-text-fill: red;";
-        } else {
-            style = "-fx-text-fill: black;";
+        switch (exitVal) {
+            case 0:
+                resultText = "Success";
+                style = "-fx-background-color: green;";
+                break;
+            case 1:
+                resultText = "Failure";
+                style = "-fx-background-color: red;";
+                break;
+            case 2:
+                resultText = "Fumble";
+                style = "-fx-background-color: black;";
+                break;
+            default:
+                resultText = "Unknown";
+                style = "-fx-background-color: gray;";
+                break;
         }
-        welcomeText.setStyle(style);
+
+        // Set the result text and style for the welcome label
+        welcomeText.setText(resultText);
+        welcomeText.setStyle(style + "-fx-font-size: 20px; -fx-text-fill: white;");
+
+        // Set the button style and text fill
+        button.setStyle(style);
+        button.setTextFill(javafx.scene.paint.Color.WHITE);
+    }
+
+    // Event handler for Bow button click
+    @FXML
+    protected void onBowButtonClick(ActionEvent event) {
+        callCppApplication("0.1", "0.5", "0.05", bowButton);
+    }
+
+    // Event handler for Sword button click
+    @FXML
+    protected void onSwordButtonClick(ActionEvent event) {
+        callCppApplication("0.20", "0.25", "0.15", swordButton);
+    }
+
+    // Event handler for Fist button click
+    @FXML
+    protected void onFistButtonClick(ActionEvent event) {
+        callCppApplication("0", "0.6", "0", fistButton);
+    }
+
+    // Event handler for Fire button click
+    @FXML
+    protected void onFireButtonClick(ActionEvent event) {
+        callCppApplication("0.5", "0", "0.5", fireballButton);
     }
 }
+
+
+
+
 
 
 

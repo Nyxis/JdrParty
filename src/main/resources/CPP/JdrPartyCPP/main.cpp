@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-
+    int retval=0;
     float criticalRate = std::atof(argv[1]);
     float failureRate = std::atof(argv[2]);
     float fumbleRate = std::atof(argv[3]);
@@ -38,19 +38,22 @@ int main(int argc, char* argv[]) {
     switch (result) {
         case GameEventResult::SUCCESS:
             Logger::log("The game event was a success!", Logger::LogType::INFO);
+            retval = 0;
             break;
         case GameEventResult::FAILURE:
             Logger::log("The game event failed.", Logger::LogType::WARNING);
+            retval = 1;
             break;
         case GameEventResult::CRITICAL_SUCCESS:
             Logger::log("Critical success!", Logger::LogType::INFO);
             break;
         case GameEventResult::FUMBLE:
             Logger::log("Fumble! The game event went terribly wrong.", Logger::LogType::ERROR);
+            retval = 2;
             break;
     }
 
-    return 0;
+    return retval;
 }
 
 
