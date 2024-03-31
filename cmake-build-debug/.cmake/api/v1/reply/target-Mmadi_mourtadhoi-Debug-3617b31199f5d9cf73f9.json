@@ -69,7 +69,9 @@
 				0,
 				3,
 				5,
-				7
+				7,
+				9,
+				11
 			]
 		}
 	],
@@ -109,7 +111,9 @@
 				0,
 				3,
 				5,
-				7
+				7,
+				9,
+				11
 			]
 		},
 		{
@@ -119,7 +123,9 @@
 				1,
 				2,
 				4,
-				6
+				6,
+				8,
+				10
 			]
 		}
 	],
@@ -167,6 +173,28 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Die.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "RandomDraw.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "RandomDraw.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "GameMaster.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "GameMaster.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

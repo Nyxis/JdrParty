@@ -15,4 +15,13 @@ add_executable(Mmadi_mourtadhoi
         Coin.cpp
         Die.h
         Die.h
-        Die.cpp)
+        Die.cpp
+        RandomDraw.h
+        RandomDraw.h
+        RandomDraw.cpp
+        RandomDraw.cpp
+        RandomDraw.cpp
+        GameMaster.h
+        GameMaster.h
+        GameMaster.cpp
+        GameMaster.cpp)
